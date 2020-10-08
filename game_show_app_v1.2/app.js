@@ -64,15 +64,18 @@ document.addEventListener('click', (e)=>{
         for (let i = 0; i < letters.length; i++) {
             const buttons = document.getElementsByClassName('keyrow');
 
-            for (let j = 0; j < buttons.lengthl; j++){
+            for (let j = 0; j < buttons.length; j++){
                 if(letters[i] = buttons[j].textContent) {
                     letters[i].className = 'show'; 
+                    let  match = letters[i]; 
+                    return match; 
                 } else {
                     return null; 
                 }
             }
          }
     }
+    checkLetter(buttons); 
     let letterFound = event.target.innerHTML;
 
 });
