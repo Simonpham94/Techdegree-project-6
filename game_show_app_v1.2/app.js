@@ -24,23 +24,56 @@ function startGame ()  {
 startGame(); 
 
 // random phrase generator - return an array of characters
-function getRandomPhraseArray () {
+function getRandomPhraseAsArray () {
     const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
-    const splitPhrase = randomPhrase.split(); 
-    return splitPhrase;    
+    return randomPhrase.split(''); 
+    
 };
 
-getRandomPhraseArray ()
 
-function addPhraseToDisplay () {
-    
-    for (let i = 0; i < splitPhrase.length; i++) {
+
+// split phrase into an array of charaters
+function addPhraseToDisplay (arr) {
+     
+ 
+    for (let i = 0; i < arr.length; i++) {
         
         const listItem = document.createElement('li');
-        splitPhrases[i].textContent = listItem.value; 
+        arr[i].textContent = listItem.value; 
         const ul = document.getElementById('phrase').querySelector('ul'); 
         ul.appendChild(listItem);  
+        if (listItem.value !== '') {
+            listItem.className = 'letter'; 
+        }
     };
 };
+
+const phraseArray = getRandomPhraseAsArray (phrases);
+addPhraseToDisplay (phraseArray); 
+
+ 
+document.addEventListener('click', (e)=>{
+    if (event.target.tagName == 'BUTTON') { 
+        event.target.className = 'chosen'; 
+        event.target.setAttribute('disable', true);
+        
+    }
+   
+    // check if the buttons clicked match with the letters
+    function checkLetter (button) {
+        const letters = document.getElementsByClassName('letter');
+        for (let i = 0; i < letters.length; i++) {
+            const buttons = document.getElementsByClassName('keyrow'); 
+            if(letters[i] == buttons[i].textContent) {
+                letters[i].className = 'show'; 
+            } else {
+                return null; 
+            }
+        }
+    }
+    let letterFound = event.target.innerHTML;
+
+});
+    
 
 
