@@ -35,11 +35,10 @@ function getRandomPhraseAsArray () {
 // split phrase into an array of charaters
 function addPhraseToDisplay (arr) {
      
- 
     for (let i = 0; i < arr.length; i++) {
         
         const listItem = document.createElement('li');
-        arr[i].textContent = listItem.value; 
+        arr[i].textContent = listItem;
         const ul = document.getElementById('phrase').querySelector('ul'); 
         ul.appendChild(listItem);  
         if (listItem.value !== '') {
