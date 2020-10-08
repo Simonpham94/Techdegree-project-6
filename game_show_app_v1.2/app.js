@@ -41,9 +41,9 @@ function addPhraseToDisplay (arr) {
         arr[i].textContent = listItem;
         const ul = document.getElementById('phrase').querySelector('ul'); 
         ul.appendChild(listItem);  
-        if (listItem.value !== '') {
+        if (listItem.value !== ' ') {
             listItem.className = 'letter'; 
-        }
+        }; 
     };
 };
 
@@ -62,13 +62,16 @@ document.addEventListener('click', (e)=>{
     function checkLetter (button) {
         const letters = document.getElementsByClassName('letter');
         for (let i = 0; i < letters.length; i++) {
-            const buttons = document.getElementsByClassName('keyrow'); 
-            if(letters[i] == buttons[i].textContent) {
-                letters[i].className = 'show'; 
-            } else {
-                return null; 
+            const buttons = document.getElementsByClassName('keyrow');
+
+            for (let j = 0; j < buttons.lengthl; j++){
+                if(letters[i] = buttons[j].textContent) {
+                    letters[i].className = 'show'; 
+                } else {
+                    return null; 
+                }
             }
-        }
+         }
     }
     let letterFound = event.target.innerHTML;
 
