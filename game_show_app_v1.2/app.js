@@ -67,7 +67,8 @@ document.addEventListener('click', (e)=>{
             for (let j = 0; j < buttons.length; j++){
                 if(letters[i] = buttons[j].textContent) {
                     letters[i].className = 'show'; 
-                    let  match = letters[i]; 
+                    let match = 0; 
+                    let match = letters[i]; 
                     return match; 
                 } else {
                     return null; 
@@ -75,8 +76,7 @@ document.addEventListener('click', (e)=>{
             }
          }
     }
-    checkLetter(buttons); 
-    let letterFound = event.target.innerHTML;
+    
 
 });
     
