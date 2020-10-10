@@ -38,13 +38,13 @@ function addPhraseToDisplay(arr) {
     for (let i = 0; i < arr.length; i++) {
         
         const listItem = document.createElement('li');
-        arr[i] = listItem;
+        listItem.textContent = arr[i];
         const ul = document.getElementById('phrase').querySelector('ul'); 
         ul.appendChild(listItem); 
         if (listItem.textContent == ' ') {
             listItem.className = 'space'; 
         } else {
-            listItem.className = 'letter'
+            listItem.className = 'letter'; 
         };
         
     };
@@ -53,6 +53,35 @@ function addPhraseToDisplay(arr) {
 const phraseArray = getRandomPhraseAsArray(phrases);
 addPhraseToDisplay(phraseArray); 
 
+qwerty.addEventListener('click', (e)=>{
+    if (event.target.tagName == 'BUTTON') { 
+        event.target.className = 'chosen'; 
+        event.target.setAttribute('disable', true);
+        
+    }
+
+    // check if the buttons clicked match with the letters
+    function checkLetter (button) {
+        const letters = document.getElementsByClassName('letter');
+        const buttons = document.getElementsByClassName('chosen');
+        for (let i = 0; i < letters.length; i++) {
+            for (let j = 0; j < buttons.length; j++){
+                if(letters[i].textContent = buttons[j].textContent) {
+                    letters[i].className = 'show'; 
+                    let match = buttons[j].textContent; 
+                    return match; 
+                } else {
+                    return null; 
+
+                }
+            }
+            
+        }
+    checkLetter(BUTTON);
+    const letterFound = match.textContent; 
+    
+}
+}); 
 
 
     
