@@ -1,6 +1,6 @@
 const qwerty = document.getElementById('qwerty'); 
 const phrase = document.getElementById('phrase');
-const missed = 0; 
+let missed = 0; 
 const phrases = [
     'Captain America', 
     'Iron Man', 
@@ -14,7 +14,7 @@ const phrases = [
 ]
 
 // game starting function 
-function startGame ()  {
+function startGame()  {
     const button = document.getElementsByClassName('btn__reset')[0]; 
     const div = document.getElementById('overlay');
     button.addEventListener('click', () => {
@@ -24,7 +24,7 @@ function startGame ()  {
 startGame(); 
 
 // random phrase generator - return an array of characters
-function getRandomPhraseAsArray () {
+function getRandomPhraseAsArray(arr) {
     const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
     return randomPhrase.split(''); 
     
@@ -33,52 +33,29 @@ function getRandomPhraseAsArray () {
 
 
 // split phrase into an array of charaters
-function addPhraseToDisplay (arr) {
+function addPhraseToDisplay(arr) {
      
     for (let i = 0; i < arr.length; i++) {
         
         const listItem = document.createElement('li');
-        arr[i].textContent = listItem;
+        arr[i] = listItem;
         const ul = document.getElementById('phrase').querySelector('ul'); 
-        ul.appendChild(listItem);  
-        if (listItem.value !== ' ') {
-            listItem.className = 'letter'; 
-        }; 
+        ul.appendChild(listItem); 
+        if (listItem.textContent == ' ') {
+            listItem.className = 'space'; 
+        } else {
+            listItem.className = 'letter'
+        };
+        
     };
 };
 
-const phraseArray = getRandomPhraseAsArray (phrases);
-addPhraseToDisplay (phraseArray); 
+const phraseArray = getRandomPhraseAsArray(phrases);
+addPhraseToDisplay(phraseArray); 
 
- 
-document.addEventListener('click', (e)=>{
-    if (event.target.tagName == 'BUTTON') { 
-        event.target.className = 'chosen'; 
-        event.target.setAttribute('disable', true);
-        
-    }
-   
-    // check if the buttons clicked match with the letters
-    function checkLetter (button) {
-        const letters = document.getElementsByClassName('letter');
-        for (let i = 0; i < letters.length; i++) {
-            const buttons = document.getElementsByClassName('keyrow');
 
-            for (let j = 0; j < buttons.length; j++){
-                if(letters[i] = buttons[j].textContent) {
-                    letters[i].className = 'show'; 
-                    let match = 0; 
-                    let match = letters[i]; 
-                    return match; 
-                } else {
-                    return null; 
-                }
-            }
-         }
-    }
+
     
 
-});
-    
 
 
