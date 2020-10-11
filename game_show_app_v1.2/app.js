@@ -1,21 +1,25 @@
 const qwerty = document.getElementById('qwerty'); 
 const phrase = document.getElementById('phrase');
+const button = document.getElementsByClassName('btn__reset')[0];
+const ul = document.getElementById('phrase').querySelector('ul'); 
+const listItem = ul.children; 
+
 let missed = 0; 
 const phrases = [
-    'Captain America', 
-    'Iron Man', 
-    'Doctor Strange', 
-    'Scarlet Witch', 
-    'Black Widow', 
-    'Spider Man', 
-    'Hulk', 
-    'Hawkeye', 
-    'Ant Man'
-]
+    'captain america', 
+    'iron man', 
+    'doctor atrange', 
+    'acarlet witch', 
+    'black widow', 
+    'spider man', 
+    'hulk', 
+    'hawkeye', 
+    'ant man'
+    ]; 
 
 // game starting function 
 function startGame()  {
-    const button = document.getElementsByClassName('btn__reset')[0]; 
+     
     const div = document.getElementById('overlay');
     button.addEventListener('click', () => {
         div.style.display = 'none'; 
@@ -30,61 +34,50 @@ function getRandomPhraseAsArray(arr) {
     
 };
 
-
-
 // split phrase into an array of charaters
 function addPhraseToDisplay(arr) {
      
-    for (let i = 0; i < arr.length; i++) {
-        
+    for (let i = 0; i < arr.length; i++) {    
         const listItem = document.createElement('li');
         listItem.textContent = arr[i];
-        const ul = document.getElementById('phrase').querySelector('ul'); 
         ul.appendChild(listItem); 
         if (listItem.textContent == ' ') {
             listItem.className = 'space'; 
         } else {
             listItem.className = 'letter'; 
-        };
-        
-    };
-};
+        }     
+    }
+}
 
 const phraseArray = getRandomPhraseAsArray(phrases);
 addPhraseToDisplay(phraseArray); 
 
-qwerty.addEventListener('click', (e)=>{
-    if (event.target.tagName == 'BUTTON') { 
-        event.target.className = 'chosen'; 
-        event.target.setAttribute('disable', true);
+qwerty.addEventListener('click', (e) => {
+
+
+    function checkLetter(arr) {
+        const checkLetter = document.getElementsByClassName('letter'); 
+        let match = null; 
+        for (let i = 0; i < checkLetter.length; i++) {
+            if(checkLetter[i] == e.target.textContent) {
+                checkLetter.className = 'show'; 
+                match = e.target.textContent; 
+                return match; 
+            } else {
+                return null; 
+            }
+        }
         
     }
-
-    // check if the buttons clicked match with the letters
-    function checkLetter (button) {
-        const letters = document.getElementsByClassName('letter');
-        const buttons = document.getElementsByClassName('chosen');
-        for (let i = 0; i < letters.length; i++) {
-            for (let j = 0; j < buttons.length; j++){
-                if(letters[i].textContent = buttons[j].textContent) {
-                    letters[i].className = 'show'; 
-                    let match = buttons[j].textContent; 
-                    return match; 
-                } else {
-                    return null; 
-
-                }
-            }
-            
-        }
-    checkLetter(BUTTON);
-    const letterFound = match.textContent; 
-    
-}
-}); 
+   
+    if(e.target.tagName === "BUTTON" ) {
+        e.target.className = 'chosen'; 
+        e.target.setAttribute('disable', true);
+        letterFound = checkLetter(e.target.textContent); 
+    }
 
 
-    
+}) 
 
 
 
