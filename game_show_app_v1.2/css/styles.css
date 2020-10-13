@@ -55,6 +55,8 @@ button {
   transition: var(--transition);
 }
 
+
+
 .main-container {
   display: flex;
   flex-direction: column;
@@ -86,6 +88,7 @@ button {
   color: transparent;
   background: var(--color-neutral-light);
   border-radius: 5px;
+  
 }
 
 .space {
@@ -94,7 +97,10 @@ button {
 
 .show {
   color: #000;
+  font-weight: 900;
+  text-transform: uppercase;
   background-color: #76CE82;
+  transition: .5s ease-in; 
 }
 
 /* Keyboard */
@@ -132,6 +138,14 @@ button {
   left: 0;
   right: 0;
   border-radius: 5px;
+}
+
+.reset {
+  padding: 8px;
+  margin: 50px auto;
+  background: #FFFFFF;
+  border-radius: 5px;
+  font-size: var(--font-size-medium); 
 }
 
 .title {
