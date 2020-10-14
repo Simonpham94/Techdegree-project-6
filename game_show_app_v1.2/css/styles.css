@@ -4,11 +4,13 @@
 /* Variables */
 
 :root {
-  --color-win: #78CF82;
+  --color-win: #518cca;
+  --color-buttontext: #2D3436; 
   --color-lose: #D94545;
-  --color-start: #5b85b7;
-  --color-neutral: #445069;
-  --color-neutral-light: #D2D2D2;
+  --color-start: #485461;
+  --color-neutral: #FFA69E;
+  --color-neutral-light: #5B6467
+  ;
   --color-keys: #37474F;
   --color-keys-light: #E5E5E5;
   --font-size-large: 60px;
@@ -27,6 +29,8 @@ body {
   flex-direction: column;
   display: flex;
   height: 100vh;
+  font-family: 'Marvel', sans-serif;;
+  
 }
 
 li, ol, ul {
@@ -37,7 +41,8 @@ li, ol, ul {
 h2 {
   margin: 0;
   text-transform: uppercase;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Marvel', sans-serif;
+  font-weight: 900;
   font-size: var(--font-size-large);
   margin: 0;
 }
@@ -99,7 +104,7 @@ button {
   color: #000;
   font-weight: 900;
   text-transform: uppercase;
-  background-color: #76CE82;
+  background-color: #55EFC4 ;
   transition: .5s ease-in; 
 }
 
@@ -153,11 +158,13 @@ button {
 }
 
 .start {
+  
   background-color: var(--color-start);
 }
 
 .start a {
-  color: var(--color-win);
+  color: var(--color-buttontext);
+  font-weight: 700;
 }
 
 .win {
@@ -174,4 +181,9 @@ button {
 
 .lose a {
   color: var(--color-lose);
+}
+
+.finalText {
+  padding-top: 10px;
+  font-size: 2em;
 }

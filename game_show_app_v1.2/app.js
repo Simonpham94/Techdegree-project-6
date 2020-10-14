@@ -3,7 +3,9 @@ const phrase = document.getElementById('phrase');
 const buttonStartGame = document.getElementsByClassName('btn__reset')[0];
 const ul = document.getElementById('phrase').querySelector('ul'); 
 const ol = document.getElementById('scoreboard').querySelector('ol');
-const liveHeart = document.querySelectorAll('IMG'); 
+let liveHeart = document.querySelectorAll('IMG');
+let triesImg = Array.from(document.querySelectorAll('.tries img'));
+let clickSound = document.getElementById('clickSound'); 
 const overlay = document.getElementById('overlay'); 
 let missed = 0; 
 const listItem = ul.children; 
@@ -16,16 +18,26 @@ const phrases = [
     'scarlet witch', 
     'black widow', 
     'spider man', 
-    'hulk', 
+    'the hulk', 
     'hawkeye', 
-    'ant man'
+    'ant man', 
+    'thor', 
+    'captain marvel', 
+    'quicksilver', 
+    'black panther', 
+    'ghost rider', 
+    'deadpool', 
+    'wolverine', 
     ]; 
+
+
 
 // game starting function 
 function startGame()  {
      
     const div = document.getElementById('overlay');
     buttonStartGame.addEventListener('click', () => {
+
         div.style.display = 'none'; 
     }); 
 };   
@@ -34,9 +46,9 @@ startGame();
 // random phrase generator - return an array of characters
 function getRandomPhraseAsArray(arr) {
     const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
-    return randomPhrase.split(''); 
-    
+    return randomPhrase.split('');    
 };
+     
 
 // split phrase into an array of charaters
 function addPhraseToDisplay(arr) {
@@ -53,13 +65,14 @@ function addPhraseToDisplay(arr) {
     }
 }
 
-const phraseArray = getRandomPhraseAsArray(phrases);
+let phraseArray = getRandomPhraseAsArray(phrases);
 addPhraseToDisplay(phraseArray); 
 
 
 // compare the letter and the clicked button and display the match 
 qwerty.addEventListener('click', (e) => {
     function checkLetter(arr) {
+        
         const checkLetter = document.getElementsByClassName('letter'); 
         let match = null; 
         for (let i = 0; i < checkLetter.length; i++) {
@@ -97,33 +110,46 @@ qwerty.addEventListener('click', (e) => {
         overlay.appendChild(btnResetGame); 
 
         btnResetGame.addEventListener('click', (e) => {
+            
             overlay.style.display = 'none'; 
             btnResetGame.style.display = 'none'; 
             ul.innerHTML = ''; 
-            const removeChosen = document.getElementsByClassName('chosen') 
-            for (i = 0; i < removeChosen.length; i++) {
-             removeChosen[i].classList.remove('chosen'); 
+            function removeChosen() {
+                const removeChosen = document.querySelectorAll('.chosen'); 
+                for (let i = 0; i < removeChosen.length; i ++) {   
+                  removeChosen[i].classList.remove('chosen');               
+                   
+                }
             }
-
-            // const removeLetter = document.getElementsByClassName('letter')
-            // const removeShow = document.getElementsByClassName('show'); 
-            // const removeMatch = document.getElementsByClassName('match'); 
-            // for (i = 0; i < removeLetter.length; i++) {
-            //     removeLetter[i].classList.remove('letter'); 
-            // }
-            // for (j = 0; j < removeShow.length; j++) {
-            //     removeShow[j].classList.remove('show'); 
-            // }
-            // for (k =0; k <removeMatch.length; k++) {
-            //     removeMatch[k].classList.remove('match'); 
-            // }
-            
-            
-            
+            removeChosen(); 
+            const tries = document.querySelectorAll('.tries'); 
+            for (let j = 0; j < liveHeart.length; j ++) {
+                liveHeart[j].className = 'tries';
+                triesImg[j].src = 'images/liveHeart.png'; 
+            }
+            missed = 0; 
+            const phraseArray = getRandomPhraseAsArray(phrases);
+            addPhraseToDisplay(phraseArray); 
+            phraseArray.join('').toUpperCase();
+            overlay.querySelector('SPAN').remove();  
+             
            
         })
     }
+// Superhero revealing function
+function RevealTheSuperHeroWin() {
+    let textWin = document.createElement('span'); 
+    textWin.textContent = `Yes, it was ${phraseArray.join('').toUpperCase()}`;
+    textWin.className = 'finalText';  
+    overlay.appendChild(textWin);
+}
 
+function RevealTheSuperHeroLose() {
+    let textLose = document.createElement('span'); 
+    textLose.textContent = `Sorry, it was ${phraseArray.join('').toUpperCase()}`;
+    textLose.className = 'finalText';  
+    overlay.appendChild(textLose);  
+}
 
 // checkWin function 
 function checkWin(arr) {
@@ -133,7 +159,10 @@ function checkWin(arr) {
     if (liLetter.length == liShow.length) {
         overlay.style.display = 'flex'; 
         overlay.className = 'win';   
-        document.querySelector("h2").innerHTML = "You Win!";
+        document.querySelector("h2").innerHTML = "Congratulations, You Win!"; 
+
+        RevealTheSuperHeroWin(); 
+
         buttonStartGame.style.display = 'none'; 
 
         gameResetting(); 
@@ -142,12 +171,14 @@ function checkWin(arr) {
     } else if (missed > 4) {
         overlay.style.display = 'flex'; 
         overlay.className = 'lose'; 
-        document.querySelector("h2").innerHTML = "You Lose!";
+        document.querySelector("h2").innerHTML = "Good Luck Next Time!";
+
+        RevealTheSuperHeroLose(); 
+
         buttonStartGame.style.display = 'none';
 
         gameResetting(); 
-        
-         
+            
     }
 }
 
