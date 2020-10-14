@@ -67,7 +67,7 @@ function addPhraseToDisplay(arr) {
     }
 }
 
-const phraseArray = getRandomPhraseAsArray(); 
+let phraseArray = getRandomPhraseAsArray(); 
 addPhraseToDisplay(phraseArray); 
 
 
@@ -135,7 +135,8 @@ qwerty.addEventListener('click', (e) => {
             }
             missed = 0; 
             //reset all the main functions
-            addPhraseToDisplay(getRandomPhraseAsArray(phrases)); 
+            phraseArray = getRandomPhraseAsArray(phrases); 
+            addPhraseToDisplay(phraseArray); 
             
             //remove the added span
             overlay.querySelector('SPAN').remove();  
