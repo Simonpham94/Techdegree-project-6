@@ -5,7 +5,8 @@ const ul = document.getElementById('phrase').querySelector('ul');
 const ol = document.getElementById('scoreboard').querySelector('ol');
 let liveHeart = document.querySelectorAll('IMG');
 let triesImg = Array.from(document.querySelectorAll('.tries img'));
-const overlay = document.getElementById('overlay'); 
+const overlay = document.getElementById('overlay');
+
 let missed = 0; 
 const listItem = ul.children; 
  
@@ -43,9 +44,11 @@ function startGame()  {
 startGame(); 
 
 // random phrase generator - return an array of characters
+
+
 function getRandomPhraseAsArray(arr) {
-    const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
-    return randomPhrase.split('');    
+    
+    return phrases[Math.floor(Math.random() * phrases.length)].split('');    
 };
      
 
@@ -64,7 +67,7 @@ function addPhraseToDisplay(arr) {
     }
 }
 
-let phraseArray = getRandomPhraseAsArray(phrases);
+const phraseArray = getRandomPhraseAsArray(); 
 addPhraseToDisplay(phraseArray); 
 
 
@@ -132,8 +135,7 @@ qwerty.addEventListener('click', (e) => {
             }
             missed = 0; 
             //reset all the main functions
-            const phraseArray = getRandomPhraseAsArray(phrases);
-            addPhraseToDisplay(phraseArray); 
+            addPhraseToDisplay(getRandomPhraseAsArray(phrases)); 
             
             //remove the added span
             overlay.querySelector('SPAN').remove();  
