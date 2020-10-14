@@ -73,9 +73,9 @@ addPhraseToDisplay(phraseArray);
 
 // compare the letter and the clicked button and display the match 
 qwerty.addEventListener('click', (e) => {
-    if (e.target.tagName == "BUTTON" ) {
+    if (e.target.tagName == 'BUTTON' ) {
         function checkLetter(arr) {
-            
+            e.target.classList.add('chosen'); 
             const checkLetter = document.getElementsByClassName('letter'); 
             let match = null; 
             for (let i = 0; i < checkLetter.length; i++) {
@@ -89,14 +89,14 @@ qwerty.addEventListener('click', (e) => {
         }
     }   
 
-    if(e.target.tagName == "BUTTON" ) {
+    if(e.target.tagName == 'BUTTON' ) {
         // e.target.className = 'chosen'; 
         
-        e.target.classList.add('chosen'); 
+        
         letterFound = checkLetter(e.target.textContent); 
     }
 
-    if(e.target.className == "chosen" ) {
+    if(e.target.className == 'chosen' ) {
         e.target.disabled = true;
     }
 
@@ -128,7 +128,7 @@ qwerty.addEventListener('click', (e) => {
                 const removeChosen = document.querySelectorAll('.chosen'); 
                 for (let i = 0; i < removeChosen.length; i ++) {   
                   removeChosen[i].classList.remove('chosen');               
-                   
+                  removeChosen[i].disabled = false;
                 }
             }
             removeChosen(); 
@@ -144,9 +144,7 @@ qwerty.addEventListener('click', (e) => {
             addPhraseToDisplay(phraseArray); 
             
             //remove the added span
-            overlay.querySelector('SPAN').remove();  
-             
-           
+            overlay.querySelector('SPAN').remove();     
         })
     }
 // Superhero revealing function
