@@ -73,20 +73,21 @@ addPhraseToDisplay(phraseArray);
 
 // compare the letter and the clicked button and display the match 
 qwerty.addEventListener('click', (e) => {
-    function checkLetter(arr) {
-        
-        const checkLetter = document.getElementsByClassName('letter'); 
-        let match = null; 
-        for (let i = 0; i < checkLetter.length; i++) {
-            if(checkLetter[i].textContent == arr) {             
-                // checkLetter[i].className += ' show'; 
-                checkLetter[i].classList.add('show');
-                match = arr;         
-            } 
-        }  
-        return match;   
-    }
-
+    if (e.target.tagName == "BUTTON" ) {
+        function checkLetter(arr) {
+            
+            const checkLetter = document.getElementsByClassName('letter'); 
+            let match = null; 
+            for (let i = 0; i < checkLetter.length; i++) {
+                if(checkLetter[i].textContent == arr) {             
+                    // checkLetter[i].className += ' show'; 
+                    checkLetter[i].classList.add('show');
+                    match = arr;         
+                } 
+            }  
+            return match;   
+        }
+    }   
 
     if(e.target.tagName == "BUTTON" ) {
         // e.target.className = 'chosen'; 
