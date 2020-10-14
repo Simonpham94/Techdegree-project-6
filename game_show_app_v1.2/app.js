@@ -5,7 +5,6 @@ const ul = document.getElementById('phrase').querySelector('ul');
 const ol = document.getElementById('scoreboard').querySelector('ol');
 let liveHeart = document.querySelectorAll('IMG');
 let triesImg = Array.from(document.querySelectorAll('.tries img'));
-let clickSound = document.getElementById('clickSound'); 
 const overlay = document.getElementById('overlay'); 
 let missed = 0; 
 const listItem = ul.children; 
@@ -113,7 +112,10 @@ qwerty.addEventListener('click', (e) => {
             
             overlay.style.display = 'none'; 
             btnResetGame.style.display = 'none'; 
+            //clear the phrase display
             ul.innerHTML = ''; 
+
+            // remove the 'chosen' class
             function removeChosen() {
                 const removeChosen = document.querySelectorAll('.chosen'); 
                 for (let i = 0; i < removeChosen.length; i ++) {   
@@ -122,15 +124,18 @@ qwerty.addEventListener('click', (e) => {
                 }
             }
             removeChosen(); 
+            // bring back the live hearts
             const tries = document.querySelectorAll('.tries'); 
             for (let j = 0; j < liveHeart.length; j ++) {
                 liveHeart[j].className = 'tries';
                 triesImg[j].src = 'images/liveHeart.png'; 
             }
             missed = 0; 
+            //reset all the main functions
             const phraseArray = getRandomPhraseAsArray(phrases);
             addPhraseToDisplay(phraseArray); 
-            phraseArray.join('').toUpperCase();
+            
+            //remove the added span
             overlay.querySelector('SPAN').remove();  
              
            
@@ -156,6 +161,7 @@ function checkWin(arr) {
     let liLetter = document.getElementsByClassName('letter'); 
     let liShow = document.getElementsByClassName('show'); 
 
+    // win display
     if (liLetter.length == liShow.length) {
         overlay.style.display = 'flex'; 
         overlay.className = 'win';   
@@ -167,7 +173,7 @@ function checkWin(arr) {
 
         gameResetting(); 
         
-
+    // lose display
     } else if (missed > 4) {
         overlay.style.display = 'flex'; 
         overlay.className = 'lose'; 
