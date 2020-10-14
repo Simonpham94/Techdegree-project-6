@@ -88,11 +88,15 @@ qwerty.addEventListener('click', (e) => {
     }
 
 
-    if(e.target.tagName === "BUTTON" ) {
+    if(e.target.tagName == "BUTTON" ) {
         // e.target.className = 'chosen'; 
+        
         e.target.classList.add('chosen'); 
-        e.target.setAttribute('disable', true);
         letterFound = checkLetter(e.target.textContent); 
+    }
+
+    if(e.target.className == "chosen" ) {
+        e.target.disabled = true;
     }
 
 
