@@ -88,13 +88,11 @@ qwerty.addEventListener('click', (e) => {
             return match;   
         }
     }   
-
-    if(e.target.tagName == 'BUTTON' ) {
-        // e.target.className = 'chosen'; 
+    const letterFound = checkLetter(e.target.textContent);
+    // if(e.target.tagName == 'BUTTON' ) {
+    //     // e.target.className = 'chosen';   
         
-        
-        letterFound = checkLetter(e.target.textContent); 
-    }
+    // }
 
     if(e.target.className == 'chosen' ) {
         e.target.disabled = true;
